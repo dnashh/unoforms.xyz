@@ -1,0 +1,93 @@
+<section>
+    <div class="row">
+        <h1>Users</h1>
+        <button data-modal="addUser">New User</button>
+    </div>
+    <% if (data.rows.length) { %>
+        <% const keys=['name', 'username' , 'email' , 'role' , 'last_sign_in' ] %>
+        <div class="page-row">
+            <% const pages = Math.ceil(data.count / data.limit) || 0 %>
+            <% for( let index = 1; index <= pages; index++ ) { %>
+                <a href="<%= `./users?limit=${data.limit}&page=${index}` %>"><button><%= index %></button></a>
+            <% } %>
+        </div>
+        <br>
+        <figure>
+            <table>
+                <thead>
+                    <% keys.forEach(title=> { %>
+                        <th>
+                            <%= title.toUpperCase().replaceAll("_", " " ) %>
+                        </th>
+                        <% }); %>
+                        <th>ACTIONS</th>
+                </thead>
+                <tbody>
+                    <% data.rows.forEach(row=> { %>
+                        <tr>
+                            <% keys.forEach(key=> { %>
+                                <% if (key=='last_sign_in' ) { %>
+                                    <td data-dateTime>
+                                        <%= row[key] %>
+                                    </td>
+                                <% } else if (key=='email' ) { %>
+                                    <td>
+                                        <%= row[key] %>
+                                            <% if (row['emailVerified']) { %>
+                                                <i class="ph-bold ph-seal-check"></i>
+                                            <% } else { %>
+                                                <i class="ph-bold ph-seal-warning"></i>
+                                        <% } %>
+                                    </td>
+                                        <% } else { %>
+                                            <td>
+                                                <%= row[key] %>
+                                            </td>
+                                            <% } %>
+                            <% }); %>
+                                    <td>
+                                        <a href="./users/<%= row['id'] %>" role="button">View</a>
+                                    </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </figure>
+    <% } else { %>
+        <h1>No Data Found</h1>
+    <% } %>
+    <div class="page-row">
+        <% const pages = Math.ceil(data.count / data.limit) || 0 %>
+        <% for( let index = 1; index <= pages; index++ ) { %>
+            <a href="<%= `./users?limit=${data.limit}&page=${index}` %>"><button><%= index %></button></a>
+        <% } %>
+    </div>
+    <br>
+    <div class="center">
+        <p>Show per Page</p>
+        <a href="./users?limit=10"><button>10</button></a>
+        <a href="./users?limit=25"><button>25</button></a>
+        <a href="./users?limit=50"><button>50</button></a>
+        <a href="./users?limit=100"><button>100</button></a>
+    </div>
+</section>
+
+<style>
+    figure {
+        overflow-x: auto;
+    }
+    table {
+        min-width: 100%;
+        width: max-content;
+    }
+
+    @media only screen and (max-width: 600px) {
+        table {
+            min-width: none;
+        }
+    }
+
+</style>
+
+<!-- Modals -->
+<%- include('modals/addUser') %>

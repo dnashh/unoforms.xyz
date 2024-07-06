@@ -1,0 +1,11 @@
+<section class="block">
+    <h1>Overview</h1>
+    <div class="grid">
+        <% Object.keys(locals.data).forEach(key => { %>
+            <div class="stat">
+                <p><%= key.toUpperCase() %></p>
+                <h1><%= locals.data[key] %></h1>
+            </div>
+        <% }) %>
+    </div>
+</section>

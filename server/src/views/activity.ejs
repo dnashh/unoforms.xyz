@@ -1,0 +1,79 @@
+<section>
+    <div class="row">
+        <h1>Activity</h1>
+    </div>
+    <% const keys=['id', 'event' , 'user' , 'meta', 'createdAt' ] %>
+        <% if (data.rows.length) { %>
+            <div class="page-row">
+                <% const pages = Math.ceil(data.count / data.limit) || 0 %>
+                <% for( let index = 1; index <= pages; index++ ) { %>
+                    <a href="<%= `./activity?limit=${data.limit}&page=${index}` %>"><button><%= index %></button></a>
+                <% } %>
+            </div>
+            <br>
+            <figure>
+                <table>
+                    <thead>
+                        <% keys.forEach(title=> { %>
+                            <th>
+                                <%= title.toUpperCase().replaceAll("_", " " ) %>
+                            </th>
+                            <% }); %>
+                    </thead>
+                    <tbody>
+                        <% data.rows.forEach(row=> { %>
+                            <tr>
+                                <% keys.forEach(key=> { %>
+                                    <% if (key=='createdAt' ) { %>
+                                        <td data-dateTime>
+                                            <%= row[key] %>
+                                        </td>
+                                    <% } else if (key=='meta') { %>
+                                        <td>
+                                            <%= row[key] ? `Form ID: ${row[key]?.id}` : ""  %>
+                                        </td>
+                                            <% } else { %>
+                                                <td>
+                                                    <%= row[key] %>
+                                                </td>
+                                            <% } %>
+                                <% }); %>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </figure>
+        <% } else { %>
+         <h1>NO Data Found</h1>
+        <% } %>
+        <div class="page-row">
+            <% const pages = Math.ceil(data.count / data.limit) || 0 %>
+            <% for( let index = 1; index <= pages; index++ ) { %>
+                <a href="<%= `./activity?limit=${data.limit}&page=${index}` %>"><button><%= index %></button></a>
+            <% } %>
+        </div>
+        <br>
+        <div class="center">
+            <a href="./activity?limit=10"><button>Show 10</button></a>
+            <a href="./activity?limit=25"><button>Show 25</button></a>
+            <a href="./activity?limit=50"><button>Show 50</button></a>
+            <a href="./activity?limit=100"><button>Show 100</button></a>
+        </div>
+</section>
+
+<style>
+    figure {
+        overflow-x: auto;
+    }
+    table {
+        min-width: 100%;
+        width: max-content;
+    }
+
+    @media only screen and (max-width: 600px) {
+        table {
+            min-width: none;
+        }
+    }
+
+</style>

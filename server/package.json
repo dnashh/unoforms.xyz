@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-starter",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Dhanush G",
+  "license": "ISC",
+  "dependencies": {
+    "@json2csv/plainjs": "^7.0.3",
+    "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "formidable": "^2.1.1",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.3.6",
+    "nodemailer": "^6.9.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.0",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

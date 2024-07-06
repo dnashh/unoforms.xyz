@@ -1,0 +1,72 @@
+<section>
+    <% const keys= ['username' , 'email' , 'emailVerified' , 'role' , 'last_sign_in', 'createdAt', 'updatedAt', 'id' ] %>
+    <% const dateTimes = ['last_sign_in', 'createdAt', 'updatedAt'] %>
+    <div class="user-card">
+        <h2><%= data.user.name || "User Doesn't Exist" %></h2>
+        <div class="user-tags">
+            <% keys.forEach(key => { %>
+                <div class="user-tag">
+                    <span><%= key %></span>
+                    <% if (dateTimes.includes(key)) { %>
+                        <span data-dateTime><%= data.user[key] %></span>
+                    <% } else { %>
+                        <span ><%= data.user[key] %></span>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    h2 {
+        border: none;
+        padding: 10px 0 0 15px;
+    }
+
+    .user-card {
+        display: flex;
+        flex-direction: column;
+        background-color: darkblue;
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .user-tags {
+        padding: 10px;
+    }
+
+    .user-tag {
+        display: inline-block;
+        margin: 5px 0;
+        padding: 2px;
+        color: black;
+        font-weight: bold;
+        border-radius: 25px;
+    }
+
+    .user-tag span:first-child {
+        background-color: aqua;
+        border-radius: 25px 0 0 25px;
+        padding: 5px;
+    }
+
+    .user-tag span:last-child {
+        background-color: limegreen;
+        border-radius: 0 25px 25px 0;
+        padding: 5px;
+    }
+
+</style>
+
+<section>
+    <div class="grid">
+        <% Object.keys(data.stats).forEach(key => { %>
+            <div class="stat">
+                <p><%= key.toUpperCase() %></p>
+                <h1><%= locals.data.stats[key] %></h1>
+            </div>
+        <% }) %>
+    </div>
+</section>

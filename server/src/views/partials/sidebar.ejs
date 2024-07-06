@@ -1,0 +1,22 @@
+<% if (view !='login' ) { %>
+    <aside>
+        <ul>
+            <li><a href="users"><i class="ph-fill ph-users"></i> Users</a></li>
+            <li><a href="activity"><i class="ph-bold ph-pulse"></i> Activity</a></li>
+        </ul>
+    </aside>
+<% } else { %>
+    <aside></aside>
+<% } %>
+
+<style>
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 auto;
+        padding: 0;
+    }
+</style>

@@ -1,0 +1,45 @@
+<section class="is-large">
+    <div class="container is-max-desktop">
+        <form class="box">
+            <h1 class="title">Login to your Account</h1>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input name="login" class="input" type="email" placeholder="e.g. alex@example.com">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input name="password" class="input" type="password" placeholder="********">
+                </div>
+            </div>
+
+            <button class="button is-primary">Sign in</button>
+        </form>
+    </div>
+</section>
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "login": e.target.login.value,
+                "password": e.target.password.value
+            }),
+            credentials: 'include'
+        }).then((res) => res.json)
+            .then((data) => {
+                window.location.reload();
+            }).catch((err) => {
+                console.log(err);
+                document.querySelector('small').innerText = 'Some Error Occurred.'
+            })
+    });
+</script>

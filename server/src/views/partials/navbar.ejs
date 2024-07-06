@@ -1,0 +1,16 @@
+<header role="navigation" aria-label="main navigation">
+    <a href="./">
+        <h3 class="lobster">unoForms.xyz</h3>
+    </a>
+    <% if (currentUser) { %>
+        <button><%= currentUser.name %></button>
+    <% } %>
+</header>
+
+<style>
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+</style>

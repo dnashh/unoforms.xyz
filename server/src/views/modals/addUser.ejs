@@ -1,0 +1,38 @@
+<dialog id="addUser">
+    <form class="col" action="./users/adduser" method="post">
+        <h2>Add a New User Account</h2>
+        <div class="inputRow">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" placeholder="Full Name" required>
+        </div>
+        <div class="inputRow">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+        </div>
+        <div >
+            <button class="modal-close" >Cancel</button>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</dialog>
+
+<script>
+    const modal = document.querySelector('#addUser');
+    const modalClose = modal.querySelector('.modal-close');
+    document.querySelector('[data-modal="addUser"]').addEventListener('click', () => {
+        modal.showModal();
+    });
+    modalClose.addEventListener('click', (e) => {
+        e.preventDefault()
+        modal.close();
+    });
+</script>
+
+<style>
+    dialog {
+        margin: auto;
+        padding: 25px;
+        background-color: black;
+        color: white;
+    }
+</style>
